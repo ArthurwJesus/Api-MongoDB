@@ -1,14 +1,15 @@
 import item from "../models/itens.js"
 
 const listarItens = (req,res) => {
-        item.find((err,item) =>{
-            res.status(200).json(item)
-        })
+    item.find().populate("produto").exec((err,item) =>{
+        res.status(200).json(item)
+    })
 }
 
 const listarItemId = (req,res)=>{
     let id = req.params.id
-    item.findById(id,(err,item)=>{
+    item.findById(id).populate("produto","descricao")
+    .exec((err,item)=>{
         if(err){
             res.status(404).send({message:`${err} -- Id não encontrado`})
         }else{
