@@ -7,6 +7,6 @@ const ItensSchema = new mongoose.Schema({
     "produto": {type: mongoose.Schema.Types.ObjectId,ref:"Produtos"}
 })
 
-const item = mongoose.model("itens",ItensSchema)
+const item = mongoose.model("Itens",ItensSchema)
 
 export default item 
