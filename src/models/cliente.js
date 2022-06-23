@@ -8,6 +8,6 @@ const ClientesSchema = new mongoose.Schema({
     "Pagamento": String
 })
 
-const cliente = mongoose.model("clientes",ClientesSchema)
+const cliente = mongoose.model("Clientes",ClientesSchema)
 
 export default cliente 
