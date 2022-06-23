@@ -1,10 +1,10 @@
 import mongoose from "mongoose"
 
-const ItensSchema = new mongoose.Schema({
-    "id": String,
+export const ItensSchema = new mongoose.Schema({
+    "id": {type: String,required: true},
     "QtdItens": Number,
     "ValorTotal": Number,
-    "produto": {type: mongoose.Schema.Types.ObjectId,ref:"Produtos"}
+    "produto": {type: mongoose.Schema.Types.ObjectId,ref:"Produtos",required:true}
 })
 
 const item = mongoose.model("Itens",ItensSchema)
