@@ -19,7 +19,8 @@ import{
     cadastrarCliente,
     atualizarCliente,
     deletarCliente,
-    getClienteBairro
+    getClienteBairro,
+    listarClienteId
 } from "../controllers/clientesControllers.js"
 
 import {
@@ -27,7 +28,8 @@ import {
     criarPedido,
     deletarPedido,
     getPedidoId,
-    getProdutosById
+    getProdutosById,
+    atualizarPedido
 } from "../controllers/pedidoController.js"
 
 const router = express.Router();
@@ -52,6 +54,7 @@ router.post("/clientes",cadastrarCliente)
 router.put("/clientes/:id",atualizarCliente)
 router.delete("/clientes/:id",deletarCliente)
 router.get("/clientes/busca",getClienteBairro)
+router.get("/clientes/:id",listarClienteId)
 
 //Pedido
 router.get("/pedidos",listaPedidos)
@@ -59,5 +62,6 @@ router.post("/pedidos",criarPedido)
 router.delete("/pedidos/:id",deletarPedido)
 router.get("/pedidos/:id",getPedidoId)
 router.get("/pedidos/:id/produtos",getProdutosById)
+router.put("/pedidos/:id",atualizarPedido)
 
 export default router
