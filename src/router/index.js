@@ -3,7 +3,7 @@ import router from "./routers.js";
 
 const routes = (app) => {
     app.route("/").get((req,res)=>{
-        res.status(200).send("Bem vindo")
+        res.status(200).send({message:"Olá esse é mini sistema de pedidos!",success:true})
     })
 
     app.use(
