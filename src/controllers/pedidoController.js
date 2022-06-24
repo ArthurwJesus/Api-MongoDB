@@ -5,7 +5,7 @@ const listaPedidos = (req,res) => {
     .populate("cliente")
     .populate("item")
     .exec((err,pedidos)=>{
-        res.status(200).json(pedidos)
+        res.status(200).json({data: pedidos,success:true})
     })
 }
 
@@ -16,9 +16,9 @@ const criarPedido = (req,res) =>{
     }else{
         pedido.save((err)=>{
             if(err){
-                res.status(500).send({message:`${err.message} -- Falha na criação`})
+                res.status(500).send({message:`${err.message} -- Falha na criação`,success:false})
             }else{
-                res.status(201).send(pedido.toJSON())
+                res.status(201).send({data:pedido.toJSON(),success:true})
             }
     })
 }
@@ -28,9 +28,9 @@ const deletarPedido = (req,res) =>{
     let id = req.params.id
     pedidos.findByIdAndDelete(id,(err)=>{
         if(err){
-            res.status(500).send({message: `${err.message} -- Não foi possivel remover o pedido`})
+            res.status(500).send({message: `${err.message} -- Não foi possivel remover o pedido`,success:false})
         }else{
-            res.status(200).send({message:"pedido removido da lista"})
+            res.status(200).send({message:"pedido removido da lista",success:true})
         }
     })
 }
@@ -40,10 +40,9 @@ const atualizarPedido = (req,res) => {
 
     pedidos.findByIdAndUpdate(id,{$set:req.body},(err)=>{
         if(err){
-            res.status(500).send({message:`${err.message} -- Falha ao atualizar`})
+            res.status(500).send({message:`${err.message} -- Falha ao atualizar`,success:false})
         }else{
-            res.status(200).send({message:"Pedido Atualizado"})
-            console.log(pedidos)
+            res.status(200).send({message:"Pedido Atualizado",success:true})
         }
     })
 }
@@ -53,9 +52,9 @@ const getPedidoId = (req,res) =>{
     pedidos.findById(id).populate("cliente")
     .populate("item").exec((err,pedidos)=>{
         if(err){
-            res.status(400).send({message: `${err} -- Pedido não encontrado`})
+            res.status(400).send({message: `${err} -- Pedido não encontrado`,success:false})
         }else{
-            res.status(200).send(pedidos)
+            res.status(200).send({data: pedidos,success:true})
         }
     })
 }
@@ -71,9 +70,9 @@ const getProdutosById = (req,res) => {
     })
     .exec((err,pedidos)=>{
         if(err){
-            res.status(400).send({message: `${err} -- produtos não encontrado`})
+            res.status(400).send({message: `${err} -- produtos não encontrado`,success:false})
         }else{
-            res.status(200).send(pedidos.item)
+            res.status(200).send({data:pedidos.item,success:true})
         }
     })
 }
