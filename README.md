@@ -1,2 +1,2 @@
 # Api-MongoDB
-Api feita com nodeJs e mongoDB para a disciplina de Tecnologias para gestão de dados 
+Api feita com NodeJs + Mongoose + MongoDB para a disciplina de Tecnologias para gestão de dados 
