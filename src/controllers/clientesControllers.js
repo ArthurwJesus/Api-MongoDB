@@ -50,4 +50,15 @@ const getClienteBairro = (req,res)=>{
     })
 }
 
-export {listarClientes,cadastrarCliente,atualizarCliente,deletarCliente,getClienteBairro}
+const listarClienteId = (req,res) =>{
+    const id = req.params.id
+    cliente.findById(id,(err,cliente)=>{
+        if(err){
+            res.status(404).send({message:`${err} -- Cliente não encontrado`})
+        }else{
+            res.status(200).send(cliente)
+        }
+    })
+}
+
+export {listarClientes,cadastrarCliente,atualizarCliente,deletarCliente,getClienteBairro,listarClienteId}

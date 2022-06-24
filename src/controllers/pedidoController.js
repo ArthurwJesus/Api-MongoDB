@@ -6,7 +6,6 @@ const listaPedidos = (req,res) => {
     .populate("item")
     .exec((err,pedidos)=>{
         res.status(200).json(pedidos)
-        console.log(pedidos)
     })
 }
 
@@ -36,6 +35,19 @@ const deletarPedido = (req,res) =>{
     })
 }
 
+const atualizarPedido = (req,res) => {
+    let id = req.params.id
+
+    pedidos.findByIdAndUpdate(id,{$set:req.body},(err)=>{
+        if(err){
+            res.status(500).send({message:`${err.message} -- Falha ao atualizar`})
+        }else{
+            res.status(200).send({message:"Pedido Atualizado"})
+            console.log(pedidos)
+        }
+    })
+}
+
 const getPedidoId = (req,res) =>{
     let id = req.params.id
     pedidos.findById(id).populate("cliente")
@@ -50,15 +62,20 @@ const getPedidoId = (req,res) =>{
 
 const getProdutosById = (req,res) => {
     let id = req.params.id
-    pedidos.findById(id)
-    .populate("item")
+    pedidos.findOne({_id: id})
+    .populate({
+        path:"item",
+        populate:{
+            path:"produto"
+        }
+    })
     .exec((err,pedidos)=>{
         if(err){
             res.status(400).send({message: `${err} -- produtos não encontrado`})
         }else{
-            res.status(200).send(pedidos)
+            res.status(200).send(pedidos.item)
         }
     })
 }
 
-export {listaPedidos,criarPedido,deletarPedido,getPedidoId,getProdutosById}
+export {listaPedidos,criarPedido,deletarPedido,getPedidoId,getProdutosById,atualizarPedido}
