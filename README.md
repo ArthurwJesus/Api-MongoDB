@@ -1,5 +1,5 @@
 # Api-MongoDB
-Api feita com NodeJs + Mongoose + MongoDB para a disciplina de Tecnologias para gestão de dados 
+Api feita com NodeJs + Mongoose + MongoDB para a disciplina de Tecnologias para gestão de dados, a conexão com o banco é dado pelo cloud do MongoDB ou pela conexão com o proprio servidor da faculdade
 
 ## Operações exemplos
 
